@@ -1,0 +1,26 @@
+.block-item-wrapper{
+    &:not(:last-child){
+        margin-bottom: .7em;
+    }
+    background-color: #ffffff;
+    padding :8px;
+}
+
+.content-block-wrapper{
+    font-size: 14px;
+    .title{
+        color:#232323;
+        font-weight: bolder;
+        font-size: 16px;
+    }
+    .attestation{
+        color:grey;
+    }
+    .content{
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+}

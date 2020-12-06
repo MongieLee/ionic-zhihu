@@ -11,9 +11,9 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { searchSharp, homeSharp, person } from "ionicons/icons";
-import Tab1 from "./pages/Home";
-import Tab2 from "./pages/Tab2";
-import Tab3 from "./pages/Tab3";
+import Home from "./pages/Home";
+import Discover from "./pages/Discover";
+import User from "./pages/User";
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -39,9 +39,9 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} />
-          <Route path="/tab2" component={Tab2} />
-          <Route path="/tab3" component={Tab3} />
+          <Route path="/tab1/attention" component={Home} />
+          <Route path="/tab2" component={Discover} />
+          <Route path="/tab3" component={User} />
           <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">

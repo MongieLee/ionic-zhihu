@@ -25,7 +25,7 @@ export const attentionData: ContentListProps[] = [
   {
     contentInfo: {
       approve: 0,
-      title: "做前端的你有没有觉得很吃力？",
+      title: "如何看待ionic？",
       comment: 2,
       blockType: `content`,
       content: `Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。`,
@@ -41,7 +41,7 @@ export const attentionData: ContentListProps[] = [
   {
     contentInfo: {
       approve: 0,
-      title: "做前端的你有没有觉得很吃力？",
+      title: "如何看待ionic？",
       comment: 2,
       blockType: `content`,
       content: `Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。`,
@@ -57,7 +57,7 @@ export const attentionData: ContentListProps[] = [
   {
     contentInfo: {
       approve: 0,
-      title: "做前端的你有没有觉得很吃力？",
+      title: "如何看待ionic？",
       comment: 2,
       blockType: `content`,
       content: `Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。`,
@@ -73,7 +73,7 @@ export const attentionData: ContentListProps[] = [
   {
     contentInfo: {
       approve: 0,
-      title: "做前端的你有没有觉得很吃力？",
+      title: "如何看待ionic？",
       comment: 2,
       blockType: `content`,
       content: `Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。`,
@@ -89,7 +89,7 @@ export const attentionData: ContentListProps[] = [
   {
     contentInfo: {
       approve: 0,
-      title: "做前端的你有没有觉得很吃力？",
+      title: "如何看待ionic？",
       comment: 2,
       blockType: `content`,
       content: `Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。`,
@@ -105,7 +105,7 @@ export const attentionData: ContentListProps[] = [
   {
     contentInfo: {
       approve: 0,
-      title: "做前端的你有没有觉得很吃力？",
+      title: "如何看待ionic？",
       comment: 2,
       blockType: `content`,
       content: `Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。`,
@@ -121,7 +121,7 @@ export const attentionData: ContentListProps[] = [
   {
     contentInfo: {
       approve: 0,
-      title: "做前端的你有没有觉得很吃力？",
+      title: "如何看待ionic？",
       comment: 2,
       blockType: `content`,
       content: `Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。`,
@@ -137,7 +137,7 @@ export const attentionData: ContentListProps[] = [
   {
     contentInfo: {
       approve: 0,
-      title: "做前端的你有没有觉得很吃力？",
+      title: "如何看待ionic？",
       comment: 2,
       blockType: `content`,
       content: `Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。Ionic Framework 是个高级的 HTML5 移动端应用框架，是个很漂亮的使用 HTML5 开发混合移动应用前端框架。`,

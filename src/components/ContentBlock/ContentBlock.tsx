@@ -36,6 +36,7 @@ const handelBlockInfo: React.FC<ContentList> = (contentList, index) => {
         <div key={index} className="flex-cl block-item-wrapper">
           <div className="title">{contentList.contentInfo.title}</div>
           <div className="flex-acjc">
+            <img style={{height:16,borderRadius:`50%`,marginRight:4}} src={contentList.userInfo?.avatir} alt='avatar'/>
             <span>{contentList.userInfo?.userName}</span>
             <IonIcon
               style={{ color: `#26b2f3`, margin: `0 .3em` }}
@@ -46,7 +47,7 @@ const handelBlockInfo: React.FC<ContentList> = (contentList, index) => {
             </span>
           </div>
           <div className="content">{contentList.contentInfo.content}</div>
-          <div className="flex-ic">
+          <div className="flex-ic attestation">
             {`${contentList.contentInfo.approve}赞同 ·${contentList.contentInfo.comment} 评论`}
           </div>
         </div>

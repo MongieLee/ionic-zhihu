@@ -24,7 +24,9 @@ const Tab1: React.FC<RouteComponentProps> = (props) => {
         <TopBar index={routeIndex} />
       </IonHeader>
       <div className="home-content-wrapper">
-        <Route path={`${props.match.url}/attention`} component={Attention} />
+        <Attention/>
+        {/* <Route path="tab1/attention" component={Attention} exact={true} /> */}
+        <div className="flex-jc" style={{padding:`8px 0`,color:`#ABAAAA`}}>没有更多了...</div>
       </div>
     </IonPage>
   );

@@ -41,10 +41,8 @@ const navList: NavList[] = [
 const TopBar: React.FC<Props> = (props) => {
   return (
     <section className="topBar-wrapper">
-    
       <div className="flex-ac">
         <IonSearchbar placeholder="拜登在美国大选中获胜" />
-        <IonItem routerLink={`/tab1/attention`}>dsdsd</IonItem>
         <IonIcon
           style={{ color: `#2eb3fb` }}
           size="large"

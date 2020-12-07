@@ -7,6 +7,7 @@ import {
   IonCardContent,
   IonIcon,
   IonPage,
+  IonButton,
 } from "@ionic/react";
 import {
   chatbubblesOutline,
@@ -32,32 +33,51 @@ import {
   FilesystemDirectory,
 } from "@capacitor/core";
 import { Plugins } from "@capacitor/core";
+declare let AMap: any;
 const { Geolocation } = Plugins;
 // get the users current position
 
+function onComplete(data: any) {
+  var str = [];
+  str.push(data.position.getLat());
+  str.push(data.position.getLng());
+  (document as any).getElementById("xxx").innerHTML = str;
+}
+
+//解析定位错误信息
+function onError(data: any) {
+  (document as any).getElementById("xxx").innerHTML =
+    "定位失败" + JSON.stringify(data);
+  console.log(data);
+}
+
 const User: React.FC = () => {
   useEffect(() => {
-      // var map = new window.BMapGL.Map("container");
-      // var point = new window.BMapGL.Point(116.404, 39.915);
-      // map.centerAndZoom(point, 15);
+    var map = new AMap.Map("container");
+    // AMap.plugin("AMap.ToolBar", function () {
+    //   var toolbar = new AMap.Geolocation();
+    //   map.addControl(toolbar);
+    // });
+    let geolocation;
+    map.plugin("AMap.Geolocation", function () {
+      geolocation = new AMap.Geolocation({
+        enableHighAccuracy: true, //是否使用高精度定位，默认:true
+        timeout: 10000, //超过10秒后停止定位，默认：无穷大
+        buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+        zoomToAccuracy: true, //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+        buttonPosition: "RB",
+      });
+      map.addControl(geolocation);
+      geolocation.getCurrentPosition();
+      AMap.event.addListener(geolocation, "complete", onComplete); //返回定位信息
+      AMap.event.addListener(geolocation, "error", onError); //返回定位出错信息
+    });
   }, []);
   return (
     <IonPage>
       <IonContent fullscreen>
         <div className="flex-ac" style={{ padding: `0 16px` }}>
-          <IonIcon
-            size="large"
-            onClick={async () => {
-              const position = await Geolocation.getCurrentPosition();
-              // grab latitude & longitude
-              console.log(position);
-              const latitude = position.coords.latitude;
-              const longitude = position.coords.longitude;
-              console.log(latitude);
-              console.log(longitude);
-            }}
-            icon={cameraOutline}
-          ></IonIcon>
+          <IonIcon size="large" icon={cameraOutline}></IonIcon>
           <IonSearchbar placeholder="搜索知乎内容" />
           <IonIcon size="large" icon={settingsSharp}></IonIcon>
         </div>
@@ -170,8 +190,25 @@ const User: React.FC = () => {
             </div>
           </IonCardContent>
         </IonCard>
+        <div
+          style={{ width: "100vw", height: "60vh", position: `relative` }}
+          id="container"
+        >
+          <IonButton
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: "50%",
+              zIndex: 2,
+              translateX: "-50%",
+            }}
+            color="primary"
+          >
+            签到打卡
+          </IonButton>
+        </div>
+        <div id="xxx"></div>
       </IonContent>
-      <div id="container"></div>
     </IonPage>
   );
 };

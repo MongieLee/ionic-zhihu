@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./ContentBlock.scss";
 import { checkmarkCircleSharp } from "ionicons/icons";
 import { IonIcon } from "@ionic/react";
+import { withRouter, RouteComponentProps } from "react-router";
 
 interface UserInfo {
   avatir: string;
@@ -24,7 +25,7 @@ interface ContentList {
   userInfo?: UserInfo;
 }
 
-interface Props {
+interface Props extends RouteComponentProps {
   data: ContentList[];
 }
 
@@ -33,10 +34,20 @@ const handelBlockInfo: React.FC<ContentList> = (contentList, index) => {
   switch (contentList.contentInfo.blockType) {
     case "content":
       return (
-        <div key={index} className="flex-cl block-item-wrapper">
+        <div
+          onClick={(e) => {
+            console.log(contentList);
+          }}
+          key={index}
+          className="flex-cl block-item-wrapper"
+        >
           <div className="title">{contentList.contentInfo.title}</div>
           <div className="flex-acjc">
-            <img style={{height:16,borderRadius:`50%`,marginRight:4}} src={contentList.userInfo?.avatir} alt='avatar'/>
+            <img
+              style={{ height: 16, borderRadius: `50%`, marginRight: 4 }}
+              src={contentList.userInfo?.avatir}
+              alt="avatar"
+            />
             <span>{contentList.userInfo?.userName}</span>
             <IonIcon
               style={{ color: `#26b2f3`, margin: `0 .3em` }}
@@ -64,7 +75,7 @@ const handelBlockInfo: React.FC<ContentList> = (contentList, index) => {
 };
 
 const Attention: React.FC<Props> = (props) => {
-  const [listData] = useState<ContentList[]>(props.data);
+  const listData = props.data;
   return (
     <div className="content-block-wrapper">
       {listData.length > 0 &&
@@ -73,4 +84,4 @@ const Attention: React.FC<Props> = (props) => {
   );
 };
 
-export default Attention;
+export default withRouter(Attention);

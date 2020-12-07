@@ -32,20 +32,29 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import Attention from "./pages/homePages/Attention";
+import ContentDetail from "./pages/homePages/ContentDetail"
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1/attention" component={Home} />
+          <Route path="/home" component={Home} />
           <Route path="/tab2" component={Discover} />
           <Route path="/tab3" component={User} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route
+            path="/"
+            render={() => <Redirect to="/home/attention" />}
+            exact={true}
+          />
+          <Route
+            path="/home/detail/:id"
+            component={ContentDetail}
+            exact={true}
+          />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="tab1" href="/home/attention">
             <IonIcon icon={homeSharp} />
             <IonLabel>首页</IonLabel>
           </IonTabButton>

@@ -8,6 +8,10 @@ import {
   IonIcon,
   IonPage,
   IonButton,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonImg,
 } from "@ionic/react";
 import {
   chatbubblesOutline,
@@ -20,86 +24,38 @@ import {
   walletOutline,
   settingsSharp,
   cameraOutline,
+  paperPlaneOutline,
 } from "ionicons/icons";
-import { useCamera } from "@ionic/react-hooks/camera";
-import { useFilesystem, base64FromPath } from "@ionic/react-hooks/filesystem";
-import { useStorage } from "@ionic/react-hooks/storage";
-import { isPlatform } from "@ionic/react";
-import {
-  CameraResultType,
-  CameraSource,
-  CameraPhoto,
-  Capacitor,
-  FilesystemDirectory,
-} from "@capacitor/core";
-import { Plugins } from "@capacitor/core";
-declare let AMap: any;
-const { Geolocation } = Plugins;
-// get the users current position
+import { RouteComponentProps } from "react-router";
+import { Plugins, CameraResultType } from "@capacitor/core";
 
-function onComplete(data: any) {
-  var str = [];
-  str.push(data.position.getLat());
-  str.push(data.position.getLng());
-  (document as any).getElementById("xxx").innerHTML = str;
-}
-
-//解析定位错误信息
-function onError(data: any) {
-  (document as any).getElementById("xxx").innerHTML =
-    "定位失败" + JSON.stringify(data);
-  console.log(data);
-}
-
-const User: React.FC = () => {
-  useEffect(() => {
-    const nanyou: number[] = [113.573518, 22.237448]; //南油大酒店经纬度
-    var lnglat = new AMap.LngLat(nanyou[0], nanyou[1]);
-    var map = new AMap.Map("container", {
-      viewMode: "2D", //设置地图模式
-      lang: "zh_cn", //设置地图语言类型
-      zoom: 13,
-      center: nanyou,
-    });
-    var m1 = new AMap.Marker({
-      position: nanyou,
-    });
-    map.add(m1);
-    // var pixel = map.lngLatToContainer(lnglat);
-    // console.log(pixel)
-
-    var circle = new AMap.Circle({
-      center: nanyou,
-      radius: 100, //签到范围半径
-      borderWeight: 1,
-      strokeOpacity: 1,
-      fillOpacity: 0.4,
-    });
-
-    circle.setMap(map);
-    let geolocation;
-    map.plugin("AMap.Geolocation", function () {
-      geolocation = new AMap.Geolocation({
-        enableHighAccuracy: true, //是否使用高精度定位，默认:true
-        timeout: 10000, //超过10秒后停止定位，默认：5s
-        buttonPosition: "RB", //定位按钮的停靠位置
-        buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-        // zoomToAccuracy: true,
-      });
-      map.addControl(geolocation);
-      geolocation.getCurrentPosition();
-      map.setFitView();
-      AMap.event.addListener(geolocation, "complete", onComplete); //返回定位信息
-      AMap.event.addListener(geolocation, "error", onError); //返回定位出错信息
-    });
-  }, []);
+import { usePhotoGallery } from "../hooks/usePhotoGallery";
+import { BarcodeScanner } from "@ionic-native/barcode-scanner";
+console.log(BarcodeScanner);
+interface HasRouterProps extends RouteComponentProps {}
+const User: React.FC<HasRouterProps> = (props) => {
+  const { photos, takePhoto } = usePhotoGallery();
+  const openScanner = async () => {
+    const data = await BarcodeScanner.scan();
+    alert("????");
+    alert(`Barcode data: ${data.text}`);
+  };
+  useEffect(() => {}, []);
   return (
     <IonPage>
       <IonContent fullscreen>
         <div className="flex-ac" style={{ padding: `0 16px` }}>
-          <IonIcon size="large" icon={cameraOutline}></IonIcon>
+          <IonIcon
+            size="large"
+            icon={cameraOutline}
+            onClick={takePhoto}
+          ></IonIcon>
           <IonSearchbar placeholder="搜索知乎内容" />
-          <IonIcon size="large" icon={settingsSharp}></IonIcon>
+          <IonIcon
+            size="large"
+            icon={settingsSharp}
+            onClick={openScanner}
+          ></IonIcon>
         </div>
         <IonCard>
           <IonCardContent>
@@ -152,9 +108,12 @@ const User: React.FC = () => {
               <div
                 className="flex-cl"
                 style={{ alignItems: "center", width: "25%" }}
+                onClick={() => {
+                  props.history.push("/clockIn");
+                }}
               >
-                <IonIcon icon={bookOutline} />
-                <span>书架</span>
+                <IonIcon icon={paperPlaneOutline} />
+                <span>考勤打卡</span>
               </div>
               <div
                 className="flex-cl"
@@ -210,24 +169,15 @@ const User: React.FC = () => {
             </div>
           </IonCardContent>
         </IonCard>
-        <div
-          style={{ width: "100vw", height: "60vh", position: `relative` }}
-          id="container"
-        >
-          <IonButton
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: "50%",
-              zIndex: 2,
-              transform: "translateX(-50%)",
-            }}
-            color="primary"
-          >
-            签到打卡
-          </IonButton>
-        </div>
-        <div id="xxx"></div>
+        <IonGrid>
+          <IonRow>
+            {photos.map((photo, index) => (
+              <IonCol size="6" key={index}>
+                <IonImg src={photo.webviewPath} />
+              </IonCol>
+            ))}
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );

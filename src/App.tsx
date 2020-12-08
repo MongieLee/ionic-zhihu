@@ -14,6 +14,7 @@ import { searchSharp, homeSharp, person } from "ionicons/icons";
 import Home from "./pages/Home";
 import Discover from "./pages/Discover";
 import User from "./pages/User";
+import ClockIn from "./pages/ClockIn";
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -32,7 +33,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import ContentDetail from "./pages/homePages/ContentDetail"
+import ContentDetail from "./pages/homePages/ContentDetail";
 
 const App: React.FC = () => (
   <IonApp>
@@ -40,13 +41,14 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/home" component={Home} />
-          <Route path="/tab2" component={Discover} />
-          <Route path="/tab3" component={User} />
+          <Route path="/discover" component={Discover} />
+          <Route path="/user" component={User} />
           <Route
             path="/"
             render={() => <Redirect to="/home/attention" />}
             exact={true}
           />
+          <Route path="/clockIn" component={ClockIn} />
           <Route
             path="/home/detail/:id"
             component={ContentDetail}
@@ -58,11 +60,11 @@ const App: React.FC = () => (
             <IonIcon icon={homeSharp} />
             <IonLabel>首页</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="tab2" href="/discover">
             <IonIcon icon={searchSharp} />
             <IonLabel>发现</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="tab3" href="/user">
             <IonIcon icon={person} />
             <IonLabel>我的</IonLabel>
           </IonTabButton>
